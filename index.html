@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        
+        <title>Act VueJs</title>
+    </head>
+
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Actividad VueJs</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                </ul>
+              </div>
+        </nav>
+
+        <div class="container">
+            <div id = "app">
+                <h1>{{ message }} </h1>
+            </div>
+        </div>
+
+        <div class="container" id = "userInput">
+            <input v-model="userText" placeholder="edit me">
+            <p>Mi nombre es: {{ userText }}</p>
+        </div>
+
+        <div>
+            <div class="container" id="Pasatiempo">
+                <div class="card" style="width: 18rem;" v-for = "pasatiempo in pasatiempos">
+                    <h2>{{pasatiempo.text}} </h2>
+                    <img :src="pasatiempo.imagen" class="card-img-top">
+                    <button type="button" class="btn btn-secondary" v-on:click="pasatiempo.isHidden = !pasatiempo.isHidden">Descripcion</button>
+                    <p v-if="!pasatiempo.isHidden"> {{pasatiempo.descp}} </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {message: 'Mis pasatiempos'}
+
+            })
+
+            var textoUsuario = new Vue ({
+                el: '#userInput',
+                data: {
+                    userText: "Cual es tu nombre?"
+                }
+            })
+
+            var ejercicio = new Vue({
+                el: '#Pasatiempo',
+                data: {
+                    pasatiempos: [
+                    { text: 'Video Juegos', isHidden: true, descp: "Desde muy chico he estado jugando video juegos. Si no mal recuerdo mi primera consola fue el nintendo 64 con mario kart 64 y smash. En mis tiempos libres me gusta jugar con mis amigos, es una muy buena distraccion.", imagen: "https://www.dualshockers.com/wp-content/uploads/2019/11/191128_DS_GamesoftheDecade_FeaturedImage.png"},
+                    { text: 'Series', isHidden: true, descp: "Cuando tengo tiempo y no tenga mucha energia o estoy acostado me pongo a ver series, por lo general veo series que tenga accion, claro que se disfrutan comedias o de otros generos. De hecho, una de mis series favoritas es How I Met Your Mother.", imagen: "https://netstorage-yen.akamaized.net/images/f6f2e7d16f4705b1.jpg?imwidth=1200&impolicy=default-amp"},
+                    { text: 'Piano', isHidden: true, descp: "El piano es un instrumento que siempre me interesa, de chicos mis abuelos nos regalaron un teclado para practicar. Se le dio buen uso al teclado, pero con el tiempo lo fui dejando. Ahora con la pandemia, me volvio el interes de tocar el piano y estoy aprendiendo con videos en internet.", imagen: "https://www.jimlaabsmusicstore.com/wp-content/uploads/2019/12/Medeli-DP650K-Digital-Upright-Piano.jpg"}
+                ]
+                }
+            })
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
